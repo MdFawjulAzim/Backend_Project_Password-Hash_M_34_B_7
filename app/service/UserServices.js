@@ -15,6 +15,11 @@ export const registerService = async (req) =>{
 
 export const loginService = async (req,res) =>{
     try{
+        const {email,password} = req.body;
+        let user = await UserModel.findOne({email});
+        if(!user) return { status : "error" , message: "User not found" };
+        const isMatch = await bcrypt.compare(password, user.password);
+        if(!isMatch) return { status : "error" , message: "Invalid credentials" };
 
 
         return {status : "Login successful"}
