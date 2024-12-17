@@ -11,6 +11,6 @@ export const register = async(req,res)=>{
 //login Controller
 
 export const login = async(req,res)=>{
-    let result = await loginService(req);
+    let result = await loginService(req,res);
     return res.json(result);
 }
