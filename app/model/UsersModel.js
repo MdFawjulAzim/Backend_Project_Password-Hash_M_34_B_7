@@ -9,6 +9,16 @@ const DataSchema = mongoose.Schema({
     versionKey: false,
 });
 
+//Middleware to Has the Password
+
+DataSchema.pre("save", async function(next) {
+    if(this.isModified("password") || this.isNew){
+        const salt = await bcrypt.genSalt(10)
+        this.password = await bcrypt.hash(this.password, salt);
+    }
+    next();
+})
+
 const UsersModel = mongoose.model ("users",DataSchema);
 
 export default UsersModel;

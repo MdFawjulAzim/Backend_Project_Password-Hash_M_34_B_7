@@ -1,4 +1,4 @@
-import { loginService,registerService} from "./../service/UserServices.js";
+import { loginService,registerService} from "../service/UserServices.js";
 
 
 // Register Controller
